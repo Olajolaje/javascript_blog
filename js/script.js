@@ -21,17 +21,18 @@ function titleClickHandler(event){
 
   /* [DONE ???????????????] remove class 'active' from all articles */
 }
-const activeArticles = document.querySelectorAll('.posts .post active p');
+const activeArticles = document.querySelectorAll('.posts .post active');
 
 for(let activeArticle of activeArticles){
   activeArticle.classList.remove('post active');
 }
 
 /* IN PROGRESS !!!!!!!!!!!!!! get 'href' attribute from the clicked link */
-const articleSelector = href = activeArticle.getAttribute('.posts .post active p');
-console.log('clickedElement');
 
-/* find the correct article using the selector (value of 'href' attribute) */
+const articleSelector = clickedElement.getAttribute('href');
+console.log('clickedElement');
+/* IN PROGRES !!!!!! find the correct article using the selector (value of 'href' attribute) */
+const targetArticle = document.querySelector('href')
 
 /* add class 'active' to the correct article */
 
