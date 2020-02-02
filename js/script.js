@@ -1,12 +1,11 @@
 'use strict';
 function titleClickHandler(event) {
-
   event.preventDefault();
   const clickedElement = this;
   console.log('Link was clicked!');
   /* [DONE] remove class 'active' from all article links  */
   const activeLinks = document.querySelectorAll('.titles a.active');
-  for(let activeLink of activeLinks){
+  for (let activeLink of activeLinks){
     activeLink.classList.remove('active');
   }
   /* add class 'active' to the clicked link */
@@ -25,9 +24,10 @@ for(let link of links) {
   link.addEventListener('click', titleClickHandler);
 }
 const optArticleSelector = '.post';
-optTitleSelector = '.post-title';
-optTitleListSelector = '.titles';
-optArticleTagsSelector = '.post-tags .list'
+const optTitleSelector = '.post-title';
+const optTitleListSelector = '.titles';
+const optArticleTagsSelector = '.post-tags .list';
+
 function generateTitleLinks(){
   /* remove contents of titleList */
   const titleList = document.querySelector('.list.titles');
@@ -37,9 +37,9 @@ function generateTitleLinks(){
   let html = '';
   for(let article of articles){
     /* get the article id */
-    console.log('w srodku petli:', article)
+    console.log('w srodku petli:', article);
     const articleId = article.getAttribute('id');
-    console.log('wyciagniete ID:', articleId)
+    console.log('wyciagniete ID:', articleId);
     /* find the title element */
     const articleTitleElement = article.querySelector('.post-title');
     /* get the title from the title element */
@@ -51,7 +51,7 @@ function generateTitleLinks(){
     console.log('=========');
     // article.classList.remove('.titles a');
   }
-  console.log('KONCOWA LISTA: ', html)
+  console.log('Koncowa lista: ', html);
   titleList.innerHTML = html;
   const links = document.querySelectorAll('.titles a');
   for(let link of links) {
@@ -64,48 +64,28 @@ generateTitleLinks();
 /*Modul 6 - tagi*/
 function generateTags(){
   /* find all articles */
-  function generateArticles(){
-    const articles = article.querySelectorAll('.posts .post');
-
-    for(let article of articles){
-      console.log('w petli:', article)
-      const articleTags = article.getAttribute('data-tags');
-      console.log('wyciagniete data-tags:', articleTags)
-      let html = '';
-      const articleTitleElement = article.querySelector('.post-title');
-      const articleTitle = articleTitleElement.innerHTML;
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-      console.log(linkHTML);
-      html = html + linkHTML;
-      console.log('=========');
-      // article.classList.remove('.titles a');
-    }
-
-  /* START LOOP: for every article: */
-
-    /* find tags wrapper */
-
-    /* make html variable with empty string */
-
-    /* get tags from data-tags attribute */
-
-    /* split tags into array */
-    const articleTagsArray = articleTags.split(' ');
-    /*for each tag */
-    for(let tag of articleTagsArray){
-      /* generate HTML of the link */
-
-      /* add generated code to html variable */
-
-    }
-
-
-
-    /* END LOOP: for each tag */
-
-    /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
 }
+function generateArticles(){
+  const articles = article.querySelectorAll('.posts .post');
+  for(let article of articles){
+    console.log('w petli:', article);
+    const articleTags = article.getAttribute('data-tags');
+    console.log('wyciagniete data-tags:', articleTags);
+    let html = '';
+    const articleTagElement = article.querySelector('.post-title');
+    const articleTag = articleTagElement.innerHTML;
+    const linkHTML = '<li><a href="#' + articleTag + '"></a></li>';
+    console.log(linkHTML);
+    html = html + linkHTML;
+    console.log('=========');
 
+  }
+
+  /* split tags into array */
+  const articleTagsArray = articleTags.split(' ');
+  /*for each tag */
+  for(let tag of articleTagsArray){
+    /* generate HTML of the link */
+  }
+}
 generateTags();
