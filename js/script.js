@@ -84,15 +84,17 @@ function generateTags(){
       const linkHTML = '<a href="tag-' + tag + '">' + tag + ' ' + '</a>';
       // / add generated code to html variable /
       html = html + linkHTML;
+      if(!allTags.hasOwnProperty(tag)){
+        /* [NEW] add tag to allTags object */
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
+      }
     }
 
+
     /* [NEW] check if this link is NOT already in allTags */
-    if(!allTags.hasOwnProperty('tag')){
-      /* [NEW] add tag to allTags object */
-      allTags['tag'] = 1;
-    } else {
-      allTags['tag']++;
-    }
+
     // / END LOOP: for each tag /
     tagsWrapper.innerHTML = html;
     // / insert HTML of all the links into the tags wrapper /
@@ -100,15 +102,23 @@ function generateTags(){
  // / END LOOP: for every article: /
  /* [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
+  console.log(tagList)
 
   /* [NEW] create variable for all links HTML code*/
   let allTagsHTML = '';
+  console.log(allTags)
   /*[New] START LOOP: for each tag in allTags:*/
   for(let tag in allTags){
     /* [New] generate code of a link and add it to allTagsHTML*/
-    allTagsHTML = tag + '(' + allTags[tag] + ')';
+    allTagsHTML = tag + '(' + allTags[tag] + ')' + allTagsHTML;
+    console.log(tag)
   }
 /* [New] END LOOP: for each tag in allTags: */
+// for(let allTagHTML of allTagsHTML) {
+//   allTagsHTML.addEventListener('click');
+// }
+console.log('działa')
+
 /* [New] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
 
