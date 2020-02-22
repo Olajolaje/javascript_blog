@@ -29,6 +29,8 @@ const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
 const optTagsListSelector = '.tags.list';
 let allTags = {};
+const optCloudClassCount = 5;
+const optCloudClassPrefix = 'tag-size';
 
 function generateTitleLinks(){
   /* remove contents of titleList */
@@ -63,6 +65,19 @@ function generateTitleLinks(){
 }
 generateTitleLinks();
 /*Modul 6 - tagi*/
+// =========================================
+function calculateTagsParams(tags) {
+    const params = {
+    max: 0,
+    min: 999999,
+  }
+    return params;
+}
+
+function calculateTagClass(){
+}
+// ===================================================
+
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty array */
 
@@ -104,20 +119,32 @@ function generateTags(){
   const tagList = document.querySelector('.tags');
   console.log(tagList)
 
-  /* [NEW] create variable for all links HTML code*/
+  // /* CHMURA TAGÓW*/ ============================
+  function calculateTagsParams(tags) {
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams)
+  for (let tag in tags) {
+    console.log(tag + ' is used ' + tags[tag] + 'times')
+  }
+  if (tags[tag] > params.max){
+    params.max = tags[tag];
+  }
+  if (tags[tag] > params.min){
+    params.min = tags[tag];
+  }
+  return tags
+}
+// ======================================================
   let allTagsHTML = '';
   console.log(allTags)
   /*[New] START LOOP: for each tag in allTags:*/
   for(let tag in allTags){
-    /* [New] generate code of a link and add it to allTagsHTML*/
-    allTagsHTML = tag + '(' + allTags[tag] + ')' + allTagsHTML;
+    const link = '<li class="' + tag +'"><a href="#">'+ tag + '</a>'+'(' + allTags[tag]  + ')'+'</li>'
+    allTagsHTML = link + allTagsHTML
     console.log(tag)
   }
 /* [New] END LOOP: for each tag in allTags: */
-// for(let allTagHTML of allTagsHTML) {
-//   allTagsHTML.addEventListener('click');
-// }
-console.log('działa')
+
 
 /* [New] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
